@@ -1,0 +1,53 @@
+.header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    padding: 16px 56px 20px 72px;
+    width: 100vw;
+    background: linear-gradient(#2735d9, #2b315e, #48b756)
+}
+.logo {
+    width: auto;
+    height: inherit ;
+    img{
+        height: inherit;
+        width: inherit;
+    }
+    padding: 0px 32px 12px 8px ;
+}
+.nav-menu { 
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    color: #beff00;
+
+}
+.menu {
+    color: inherit;
+}
+.menu__btn {
+    font-size: 26px;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.4s ease 0s;
+    
+    &:hover{
+        color: #f7ca00;
+        font-size: 28px;
+    }
+    
+}
+.auth-btn {
+    font-size: 26px;
+color: inherit;
+transition: all 0.4s ease 0s;
+&:hover{
+    color: #f7ca00;
+    font-size: 28px;
+}
+}
