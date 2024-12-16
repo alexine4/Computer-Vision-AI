@@ -1,0 +1,23 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background: linear-gradient(45deg, #6c01f8, #03009c);
+    // .footer__text
+
+    &__text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90vw;
+        font-weight: 200;
+        font-size: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        border-top: 2px dashed #fff;
+        padding: 10px 0;
+        margin: 20px 10px 10px 10px;
+    }
+    
+
+}

@@ -1,0 +1,260 @@
+.info-section {
+    width: 100vw;
+    height: 780px;
+}
+.first-section {
+    margin: 110px 0 0 0;
+    background: url("/images/welcomePg/background.svg") 40% 40% / auto no-repeat;
+}
+.eclipse {
+    width: inherit;
+    height: inherit;
+    background-color: #00000054;
+}
+
+.block-info {
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 640px;
+    height: inherit;
+}
+.block-info__header {
+    font-weight: 500;
+    font-size: 64px;
+}
+.block-info__header3 {
+    font-weight: 500;
+    font-size: 48px;
+}
+.block-info__text {
+    font-weight: 300;
+    font-size: 20px;
+}
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+
+    &__image {
+        width: 550px;
+        height: auto;
+    }
+}
+.col-reverse {
+    flex-direction: row-reverse;
+}
+.paddin-r {
+    padding: 0 90px 0 0;
+}
+.paddin-l {
+    padding: 0 0 0 90px;
+}
+.wrapper-padding {
+    padding: 0 110px;
+}
+.color1 {
+    background: linear-gradient(#003e77, #0b0142);
+}
+.color3 {
+    background: linear-gradient(#440158 ,#003e77, );
+}
+
+.color2 {
+    background: linear-gradient(#0b0142, #440158);
+}
+
+.card-blocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: inherit;
+    &__header {
+        font-weight: 500;
+        font-size: 50px;
+    }
+}
+
+.card-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    max-width: 90vw;
+    height: 580px;
+
+    // .card-block__card
+
+    &__card {
+    }
+}
+.card {
+    flex: 0 1 30%;
+
+    height: inherit;
+    overflow: hidden;
+    margin: 5px 20px;
+    // .card__image
+
+    &__image {
+        height: 370px;
+        width: inherit;
+    }
+
+    // .card__header
+
+    &__header {
+        margin: 10px 0;
+        font-size: 40px;
+        font-weight: 400;
+    }
+
+    // .card__text
+
+    &__text {
+        font-size: 16px;
+        font-weight: 300;
+    }
+}
+.response-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #00000080;
+    box-shadow: 0px 0px 13px 14px #ffffff71;
+    padding: 20px 40px;
+    margin: 0;
+    &__image {
+        width: 200px;
+        width: 200px;
+    }
+}
+.star{
+    width: 40px;
+    height: 40px;
+}
+.onFocus{
+    width: 450px;
+    z-index: 10;   
+}
+.unFocused{
+    width: 250px;
+    height: 300px;
+
+}
+
+
+.feedback {
+   
+    width: 25vw;
+    height: 500px;
+    // .feedback__container
+
+    &__container {
+        
+        width: inherit;
+    }
+
+    // .feedback__button
+
+    &__button {
+    }
+}
+.btn {
+    background: none;
+    border: none;
+    width: inherit;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 30px 0;
+
+    // .btn__image
+
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        font-size: 50px;
+        height: inherit;
+        color: #1d76c9;
+        margin: 0 20px 5px 0;
+    }
+
+    // .btn__text
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 26px;
+        
+    }
+
+    // .btn__value
+
+    &__value {
+        display: flex;
+        text-align: center;
+        height: 40px;
+        font-size: 20px;
+        margin: 10px 0;
+        font-weight: 200;
+        font-family: 'Courier New', monospace;
+    }
+   
+}
+
+.change-width{
+width: 350px;
+}
+.jc{
+    justify-content: space-between;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 30vw;
+    margin: 0 70px 0 20px;
+    
+    // .form__field
+    mat-label,input, input::placeholder, textarea::placeholder{
+        color: #fff;
+    }
+    &__field {
+       
+        width: inherit;
+    }
+    &__btn{
+        background: none;
+        border: 2px solid  #ffffff;
+        border-radius: 10px;
+        padding: 10px 30px;
+        transition: all 0.3s ease 0s;
+        
+        &:hover{
+            border-radius: 20px;
+            border-color: #0095f8;
+            color: #0095f8;
+        }
+        
+    }
+       
+    
+}
+
+
+
+
