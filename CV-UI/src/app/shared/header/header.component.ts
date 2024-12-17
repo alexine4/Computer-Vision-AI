@@ -3,10 +3,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [MatButtonModule, MatMenuModule, TranslateModule],
+  imports: [MatButtonModule, MatMenuModule, TranslateModule, RouterModule],
   providers: [CookieService],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

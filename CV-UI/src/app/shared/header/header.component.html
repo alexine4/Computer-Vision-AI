@@ -32,6 +32,6 @@
         Українська
       </button>
     </mat-menu>
-    <button mat-button class="auth-btn">{{ "Sign In" | translate }}</button>
+    <a mat-button [routerLink]="['/login']" routerLinkActive="router-link-active"  class="auth-btn">{{ "Sign In" | translate }}</a>
   </nav>
 </section>
