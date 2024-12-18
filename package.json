@@ -1,0 +1,32 @@
+{
+  "name": "computer-vision-ai",
+  "version": "1.0.0",
+  "description": "backend part for computer vision app with AI",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexine4/Computer-Vision-AI.git"
+  },
+  "author": "alexine4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexine4/Computer-Vision-AI/issues"
+  },
+  "homepage": "https://github.com/alexine4/Computer-Vision-AI#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "sequelize": "^6.37.5"
+  }
+}
