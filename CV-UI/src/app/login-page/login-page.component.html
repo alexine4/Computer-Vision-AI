@@ -1,1 +1,111 @@
-<p>login-page works!</p>
+<div class="page">
+  <section class="page-wrapper">
+    <form
+      class="form__container container animation-show"
+      [formGroup]="signInForm"
+      (ngSubmit)="submitSignIn()"
+      *ngIf="loading; else loader"
+    >
+      <h2 class="form__title">Sign-in to account</h2>
+      <div class="form__fields">
+        <label
+          class="form__label"
+          [ngClass]="
+            this.signInForm.get('emailOrUsername')?.value !== ''
+              ? 'active'
+              : 'not-active'
+          "
+          >Email Or Username</label
+        >
+        <input
+          formControlName="emailOrUsername"
+          type="text"
+          class="form__field phfont-family"
+          placeholder="Enter email or username"
+        />
+        <p
+          class="info"
+          *ngIf="
+            this.signInForm.get('emailOrUsername')?.invalid &&
+            this.signInForm.get('emailOrUsername')?.touched
+          "
+        >
+          <small
+            *ngIf="this.signInForm.get('emailOrUsername')?.value == ''"
+            class="form-error animation-show"
+          >
+            The form must be filled out!!! Please enter your email or username
+          </small>
+        </p>
+
+        <label
+          class="form__label"
+          [ngClass]="
+            this.signInForm.get('password')?.value !== ''
+              ? 'active'
+              : 'not-active'
+          "
+          >Password</label
+        >
+        <div class="form__field-password phfont-family">
+          <input
+            formControlName="password"
+            type="password"
+            id="password"
+            placeholder="Password"
+            class="form__field phfont-family pos-left"
+          />
+          <button
+            type="button"
+            (click)="showHidePassword(); showPassword = !showPassword"
+            class="non-btn-style icon"
+          >
+          <mat-icon>{{showPassword? 'visibility':'visibility_off'}}</mat-icon>
+          </button>
+        </div>
+        <p
+          class="info"
+          *ngIf="
+            this.signInForm.get('password')?.invalid &&
+            this.signInForm.get('password')?.touched
+          "
+        >
+          <small
+            *ngIf="this.signInForm.get('password')?.value == ''"
+            class="form-error animation-show"
+          >
+            The form must be filled out!!! Please enter your Password
+          </small>
+          <small
+            *ngIf="
+              this.signInForm.get('password')?.value !== '' &&
+              this.signInForm.get('password')?.invalid
+            "
+            class="form-error animation-show"
+          >
+            Invalid format!! The password must contain minimum eight characters,
+            at least one uppercase letter, one lowercase letter and one number
+          </small>
+        </p>
+      </div>
+      <a (click)="forgotPassword()" class="form__help-ref">Forgot password?</a>
+      <button
+        [disabled]="signInForm.invalid || signInForm.disabled"
+        type="submit"
+        class="form__btn btn btn-blc"
+        [ngClass]="
+          !signInForm.invalid && !signInForm.disabled ? 'hover-color' : ''
+        "
+      >
+        Sign-In to account
+      </button>
+      
+    </form>
+
+    <ng-template #loader>
+      <div class="loader">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </section>
+</div>

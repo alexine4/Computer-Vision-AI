@@ -1,0 +1,248 @@
+@use "../shared/styles/scssConstants.scss" as constants;
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#440158, #003e77);
+  padding: 115px 0 0 0;
+  height: 100vh;
+}
+.page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 75vw;
+}
+.form {
+  // .form__container
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, #6ee5f5, #3b39af, #aff706);
+    border-radius: 50px;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    margin: 0 0 20px 0;
+    @media (max-width: constants.$md4) {
+      font-size: 36px;
+    }
+  }
+
+  &__label {
+    font-weight: 400;
+    font-size: 32px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 510px;
+    transition: all 2s ease 0s;
+    position: relative;
+    color: #aff706;
+  }
+
+  // .form__fields
+
+  &__fields {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  // .form__field
+
+  &__field {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 510px;
+    height: 70px;
+    margin: 10px 0;
+    background: none;
+    border: 3px solid #b3ff00;
+    border-radius: 50px;
+    transition: all 0.5s ease 0s;
+    color: #fcf7f7;
+    @media (max-width: constants.$md3) {
+      width: 70vw;
+    }
+    @media (max-width: constants.$md3) {
+      font-size: 22px;
+    }
+    @media (max-width: constants.$md4) {
+      font-size: 20px;
+    }
+
+    &::placeholder {
+      color: #fcf7f7;
+    }
+
+    @media (min-width: constants.$md3) {
+      &:hover {
+        border-color: #836ef5;
+      }
+    }
+  }
+
+  &__field-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: none;
+
+    &::placeholder {
+      color: #fcf7f7;
+    }
+  }
+
+  // .form__btn
+
+  &__btn {
+    border-radius: 20px;
+    width: 510px;
+    height: 70px;
+    color: #fcf7f7;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 43px;
+    margin: 10px 0;
+    background: linear-gradient(45deg, #440158,#3b39af);
+    @media (min-width: constants.$md3){
+    &:hover{
+      background: linear-gradient(45deg, #330242,#2c2a8b);
+    }
+    }
+    @media (max-width: constants.$md2) {
+      width: 70vw;
+    }
+    @media (max-width: constants.$md3) {
+      font-size: 28px;
+    }
+    @media (max-width: constants.$md4) {
+      font-size: 22px;
+    }
+  }
+
+  &__help-ref {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.3s ease 0s;
+
+    @media (min-width: constants.$md3) {
+      &:hover {
+        color: #aea2f0;
+      }
+    }
+  }
+
+  &__help-text {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    color: #000000;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    @media (max-width: constants.$md4) {
+      flex-direction: column;
+    }
+    a {
+      padding: 0 0 0 10px;
+      text-decoration: underline;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.form-error {
+  font-size: 20px;
+  color: rgb(0, 195, 255);
+}
+
+.info {
+  max-width: 510px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+ 
+  position: relative;
+  right: 60px;
+  mat-icon{
+    font-size: 32px;
+    padding: 8px;
+  }
+}
+
+.pos-left {
+  position: relative;
+  left: 25px;
+}
+
+.active {
+  display: flex;
+  animation: labelAnimation 2s ease forwards;
+}
+
+.not-active {
+  animation: notLabelAnimation 2s ease forwards;
+}
+
+@keyframes labelAnimation {
+  from {
+    opacity: 0;
+    left: -5000px;
+    margin: 0;
+    line-height: 0px;
+  }
+
+  to {
+    opacity: 1;
+    left: 0;
+    margin: 5px 0;
+    line-height: 38px;
+  }
+}
+@keyframes notLabelAnimation {
+  from {
+    opacity: 1;
+    left: 0;
+    margin: 5px 0;
+    line-height: 38px;
+  }
+
+  to {
+    opacity: 0;
+    left: -5000px;
+    margin: 0;
+    line-height: 0px;
+  }
+}
+

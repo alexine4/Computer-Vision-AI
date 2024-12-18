@@ -1,5 +1,5 @@
+@use '../src/app/shared/styles/scssConstants.scss' as constants;
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600,700,800,900,italic,500italic,600italic,700italic,800italic,900italic);
-
 /* You can add global styles to this file, and also import other style files */
 
 
@@ -11,4 +11,28 @@ body { margin: 0;  }
 }
 p, h2,h3, h4, button{
     color: #fff;
+}
+.non-btn-style{
+    background: none;
+    border: none;
+}
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+.hover-color{
+    border-radius: 15px;
+    scale: 0.9;
+    background: linear-gradient(45deg, #720000,#420394);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    @media (min-width: constants.$md3){
+    &:hover{
+        scale: 1.1;
+        color: #ebd5d5;
+        background: linear-gradient(45deg, #520101,#5205b6);
+    }
+    }
 }
