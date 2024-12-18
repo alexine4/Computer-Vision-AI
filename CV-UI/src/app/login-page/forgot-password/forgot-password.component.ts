@@ -37,11 +37,11 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
 
     this.changePasswordForm = new FormGroup({
-      email: new FormControl('Admin123@admin.com', [
+      email: new FormControl('admin@g.com', [
         Validators.required,
         Validators.email,
       ]),
-      userName: new FormControl('Admin123', [Validators.required]),
+      userName: new FormControl('admin', [Validators.required]),
       password: new FormControl('Admin123', [
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
