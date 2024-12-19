@@ -7,6 +7,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { changeLoaderStatus } from '../../shared/function/shared.function';
 
 @Component({
   selector: 'app-forgot-password',
@@ -54,7 +55,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     });
 
     // preloader hide
-    this.loadingTimeout(2000);
+    changeLoaderStatus()
   }
 
   public confirmUserData(): void {
@@ -71,7 +72,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
       () => {
 
         this.mode = 'change password'
-        this.loadingTimeout(2000)
+        changeLoaderStatus()
       },
       error => {
         this.changePasswordForm.enable()
@@ -115,11 +116,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     this.dialogRef.close()
   }
 
-  private loadingTimeout(time: number): void {
-    setTimeout(() => {
-      this.loading = true
-    }, time);
-  }
+ 
 
   ngOnDestroy(): void {
     if (this.changePassSub$) {

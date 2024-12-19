@@ -3,21 +3,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../interfaces';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private token = '';
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private cookieService: CookieService
+  ) {}
 
   // login
   public login(user: User): Observable<{ token: string }> {
+    const expiresDate = new Date();
+    expiresDate.setHours(expiresDate.getHours() + 24);
     return this.httpClient
       .post<{ token: string }>('/api/auth/login', user)
       .pipe(
         tap(({ token }) => {
-          localStorage.setItem('auth-token', token);
+          this.cookieService.set('Authorization', token, expiresDate, '/');
           this.setToken(token);
         })
       );
@@ -35,7 +41,7 @@ export class AuthService {
 
   public logOut() {
     this.setToken('');
-    localStorage.clear();
+    this.cookieService.delete('Authorization','/')
   }
 
   public register(user: User): Observable<User> {

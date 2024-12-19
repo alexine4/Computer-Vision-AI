@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./shared/header/header.component";
+import { AuthService } from './shared/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'CV-UI';
+  constructor(
+    private auth: AuthService,
+    private cookieService: CookieService
+  ) {}
+  ngOnInit(): void {
+    const potentialToken = this.cookieService.get('Authorization');
+    if (potentialToken !== null) {
+      this.auth.setToken(potentialToken);
+    }
+  }
 }
