@@ -48,7 +48,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     //preloader hide
-    changeLoaderStatus()
+    changeLoaderStatus().then(loading => this.loading = loading);
 
     // form create
     this.signInForm = new FormGroup({

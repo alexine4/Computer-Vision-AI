@@ -1,3 +1,5 @@
+
+<div class="wrapper" *ngIf="!loading; else loader">
 <!-- defence express section -->
 <section class="info-section first-section">
   <div class="eclipse">
@@ -213,6 +215,9 @@
     </form>
   </div>
 </section>
-<footer>
-
-</footer>
+</div>
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

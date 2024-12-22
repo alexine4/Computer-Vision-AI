@@ -1,9 +1,17 @@
-.info-section {
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
+    
+}
+
+.info-section {
+    width: 100vw;
     height: 780px;
 }
 .first-section {
-    margin: 110px 0 0 0;
     background: url("/images/welcomePg/background.svg") 40% 40% / auto no-repeat;
 }
 .eclipse {

@@ -1,1 +1,25 @@
-<p>home works!</p>
+<section class="buttons-container" *ngIf="!loading; else loader">
+    
+      <button class="button-container" mat-fab extended>
+        <mat-icon>videocam</mat-icon>
+        {{ "Videocamers" | translate }}
+      </button>
+    
+      <button class="button-container" mat-fab extended>
+        <mat-icon>newspaper</mat-icon>
+        {{ "Recognition log" | translate }}
+      </button>
+      <button  class="button-container" mat-fab extended>
+        <mat-icon>fact_check</mat-icon>
+        {{ "List of threats" | translate }}
+      </button>
+      <button class="button-container" mat-fab extended>
+        <mat-icon>admin_panel_settings</mat-icon>
+        {{ "Administration" | translate }}
+      </button>
+</section>
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

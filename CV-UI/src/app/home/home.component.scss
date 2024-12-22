@@ -1,0 +1,21 @@
+@use '../shared/styles/scssConstants.scss' as constants;
+.buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.button-container {
+    font-size: 20px;
+    color: #fff;
+    width: 300px;
+    background: linear-gradient(#bb0404,#00859c);
+    margin: 15px 25px;
+    transition: all 0.5s ease 0s;
+    @media (min-width: constants.$md3){
+    &:hover{
+        scale: 1.1;
+        color: #ebbf6f;
+        background: linear-gradient(#5f0101,#014552);
+    }
+    }
+}

@@ -1,3 +1,14 @@
+.page-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 115px 0 0 0;
+    width: 100vw;
+    height: auto;
+    min-height: 100%;
+    background: linear-gradient(45deg,#7d07a1, #03009c);
+}
+
 .footer {
     display: flex;
     align-items: center;

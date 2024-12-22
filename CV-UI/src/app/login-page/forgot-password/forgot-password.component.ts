@@ -55,7 +55,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     });
 
     // preloader hide
-    changeLoaderStatus()
+    changeLoaderStatus().then(loading => this.loading = loading);
   }
 
   public confirmUserData(): void {
