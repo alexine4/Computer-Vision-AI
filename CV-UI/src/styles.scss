@@ -1,6 +1,9 @@
+
+/* first usings */
 @use '../src/app/shared/styles/scssConstants.scss' as constants;
-@import url(https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600,700,800,900,italic,500italic,600italic,700italic,800italic,900italic);
+@use '@angular/material' as mat;
 /* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600,700,800,900,italic,500italic,600italic,700italic,800italic,900italic);
 
 
 html, body { height: 100%; }
@@ -21,6 +24,7 @@ p, h2,h3, h4, button{
     align-items: center;
     justify-content: center;
     min-height: 300px;
+    
 }
 .hover-color{
     border-radius: 15px;
@@ -30,9 +34,17 @@ p, h2,h3, h4, button{
     cursor: pointer;
     @media (min-width: constants.$md3){
     &:hover{
-        scale: 1.1;
+        scale: 1.0;
         color: #ebd5d5;
         background: linear-gradient(45deg, #520101,#5205b6);
     }
     }
 }
+
+:root {
+    @include mat.progress-spinner-overrides((
+      active-indicator-color: #eeff00,
+    ));
+  }
+
+
