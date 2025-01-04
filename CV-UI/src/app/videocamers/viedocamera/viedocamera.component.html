@@ -1,0 +1,66 @@
+<div class="wrapper">
+  <section class="video-section">
+    <div class="video-detect" width="640px" height="480px">
+      <video
+        #video
+        class="video"
+        autoplay
+        loop
+        controls
+        width="640px"
+        height="480px"
+      ></video>
+      <canvas #canvas class="canvas" width="640px" height="480px"></canvas>
+    </div>
+    <section class="button-container">
+      <button class="button" (click)="startDetection()" mat-fab extended>
+        <mat-icon>play_circle</mat-icon>
+        Start Detection
+      </button>
+      <button class="button" (click)="pauseResume()" mat-fab extended>
+        <mat-icon>{{ pauseCheck ? "fiber_manual_record" : "play_arrow" }}</mat-icon>
+        {{ pauseCheck ? "Pause" : "Resume" }}
+      </button>
+      <button class="button" (click)="startDetection()" mat-fab extended>
+        <mat-icon>start</mat-icon>
+        Start Detection
+      </button>
+    </section>
+  </section>
+  <section class="table-section">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th class="mat-header-cell"  mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="object">
+        <th class="mat-header-cell" mat-header-cell *matHeaderCellDef> {{"Object" | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="percent">
+        <th class="mat-header-cell" mat-header-cell *matHeaderCellDef> {{'Percent' | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="time">
+        <th  class="mat-header-cell" mat-header-cell *matHeaderCellDef> {{"Time" | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+  
+  
+</div>

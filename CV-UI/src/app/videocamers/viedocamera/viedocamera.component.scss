@@ -1,0 +1,70 @@
+@use "../../shared/styles/scssConstants.scss" as constants;
+.wrapper {
+    display: flex;
+    height: 70vh;
+    width:  90vw;
+    flex-direction: row;
+}
+
+.video-section{
+    margin: 0 40px 0 0 ;
+}
+.video-detect {
+    position: relative;
+}
+
+.canvas {
+    position: absolute;
+    
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.button-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    width: 550px;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    width: 250px;
+    padding: 5px;
+    border-radius: 15px;
+    background: linear-gradient(#bb0404, #00859c);
+    margin: 15px 25px;
+    transition: all 0.5s ease 0s;
+    @media (min-width: constants.$md3) {
+        &:hover {
+            scale: 1.1;
+            color: #ebbf6f;
+            background: linear-gradient(#5f0101, #014552);
+        }
+    }
+    mat-icon{
+        margin: 0 15px 0 0 ;
+    }
+}
+
+.table-section{
+    width: 40vw;
+    height: 53vh;
+    max-height: 53vh;
+    overflow-y: scroll;
+    background: #03f5e9;
+}
+
+
+.table{
+width: inherit;
+}
+.mat-mdc-table{
+    min-width: 30vw;
+    background: none;
+   
+}

@@ -4,7 +4,7 @@
   </div>
   <nav class="nav-menu">
     <div class="menu">
-      <button mat-button class="menu__btn">{{ "Home" | translate }}</button>
+      <button (click)="openPage( isAuthorize? '/home' : '/welcome')" mat-button class="menu__btn">{{ "Home" | translate }}</button>
       <button mat-button class="menu__btn">
         {{ "Our Service" | translate }}
       </button>
@@ -32,6 +32,23 @@
         Українська
       </button>
     </mat-menu>
-    <a mat-button [routerLink]="['/login']" routerLinkActive="router-link-active"  class="auth-btn">{{ "Sign In" | translate }}</a>
+    <a
+      *ngIf="!isAuthorize; else authorize"
+      mat-button
+      [routerLink]="['/login']"
+      routerLinkActive="router-link-active"
+      class="auth-btn"
+      >{{ "Sign In" | translate }}</a
+    >
+    <ng-template #authorize>
+      <a
+        mat-button
+        [routerLink]="['/welcome']"
+        (click)="logOut()"
+        routerLinkActive="router-link-active"
+        class="auth-btn"
+        >{{ "Log Out" | translate }}</a
+      >
+    </ng-template>
   </nav>
 </section>

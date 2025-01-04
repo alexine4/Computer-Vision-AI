@@ -4,7 +4,7 @@
       class="form__container container animation-show"
       [formGroup]="signInForm"
       (ngSubmit)="submitSignIn()"
-      *ngIf="loading; else loader"
+      *ngIf="!loading; else loader"
     >
       <h2 class="form__title">Sign-in to account</h2>
       <div class="form__fields">
