@@ -55,6 +55,7 @@
     width: 40vw;
     height: 53vh;
     max-height: 53vh;
+    overflow-x: hidden;
     overflow-y: scroll;
     background: #03f5e9;
 }
@@ -62,9 +63,9 @@
 
 .table{
 width: inherit;
+
 }
 .mat-mdc-table{
     min-width: 30vw;
-    background: none;
-   
+    background: none;   
 }

@@ -6,20 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-];
+import { RecognitionLog } from '../../shared/interfaces';
+import { RecognitionLogService } from '../../shared/services/recognition-log.service';
 
 @Component({
   selector: 'app-viedocamera',
@@ -33,13 +21,26 @@ export class ViedocameraComponent {
   pauseCheck = false;
   public playbackRate = 1.0;
   displayedColumns: string[] = ['position', 'object', 'percent', 'time'];
-  dataSource = ELEMENT_DATA;
+  dataSource!: RecognitionLog[] ;
 
-  constructor(private videoRecognitionService: VideoRecognitionService) {}
+  constructor(
+    private videoRecognitionService: VideoRecognitionService,
+    private recognitionLogService: RecognitionLogService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     // Завантаження моделі при ініціалізації
     await this.videoRecognitionService.loadModel();
+    const params = {
+      cameraId: 1,
+      offset: 2,
+      limit:3
+    }
+    this.recognitionLogService.fetchAll(params).subscribe((recognitionLog) => {
+      this.dataSource = recognitionLog;
+      console.log(this.dataSource);
+      
+    });
   }
 
   async startDetection(): Promise<void> {

@@ -11,6 +11,7 @@ const initialilazationAll = require('./controllers/initializationDB')
 
 // init routes
 const authRoutes = require("./routes/auth");
+const recognitionRoutes = require("./routes/recognition");
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 
 // write path of route and meneger route file
 app.use('/api/auth', authRoutes)
+app.use('/api/recognition', recognitionRoutes)
 
 
 
