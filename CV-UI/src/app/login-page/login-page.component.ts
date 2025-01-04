@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { changeLoaderStatus } from '../shared/function/shared.function';
 
 @Component({
   selector: 'app-login-page',
@@ -47,19 +48,16 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     //preloader hide
-    setTimeout(() => {
-      this.loading = true;
-    }, 2500);
+    changeLoaderStatus().then(loading => this.loading = loading);
 
     // form create
     this.signInForm = new FormGroup({
-      emailOrUsername: new FormControl('', [Validators.required]),
-      password: new FormControl('', [
+      emailOrUsername: new FormControl('admin', [Validators.required]),
+      password: new FormControl('Admin123', [
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
       ]),
     });
-    this.forgotPassword()
   }
 
   public showHidePassword(): void {

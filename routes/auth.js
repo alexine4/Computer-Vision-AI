@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post('/login',controller.login)
 router.post('/register',controller.register)
-router.get('/checkUser',controller.checkUser)
+router.post('/checkUser',controller.checkUser)
 router.post('/changePassword',controller.changePassword)
 
 
