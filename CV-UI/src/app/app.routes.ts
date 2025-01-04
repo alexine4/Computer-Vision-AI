@@ -4,9 +4,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './shared/classes/auth.guard';
 import { SiteComponent } from './shared/layouts/site/site.component';
 import { HomeComponent } from './home/home.component';
+import { ViedocameraComponent } from './videocamers/viedocamera/viedocamera.component';
 
 export const routes: Routes = [
-  
   {
     path: '',
     component: SiteComponent,
@@ -24,12 +24,16 @@ export const routes: Routes = [
         path: 'login',
         component: LoginPageComponent,
       },
-    ]
+    ],
   },
   {
     path: '',
     component: SiteComponent,
     canActivate: [AuthGuard],
-    children: [{ path: 'home', component: HomeComponent, title: 'Home' }],
+    children: [
+      { path: 'home', component: HomeComponent, title: 'Home' },
+      { path: 'camera', component: ViedocameraComponent, title: 'Camera' },
+      { path: 'test', component: ViedocameraComponent, title: 'Camera' },
+    ],
   },
 ];
