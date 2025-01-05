@@ -2,6 +2,7 @@ import { Injectable, model } from '@angular/core';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import * as tmImage from '@teachablemachine/image';
 import '@tensorflow/tfjs';
+import { RecognitionLog } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,6 @@ import '@tensorflow/tfjs';
 export class VideoRecognitionService {
   private model: cocoSsd.ObjectDetection | null = null;
   private teachableModel: any = null;
-  private teachableMaxPredictions = 0;
   private readonly teachableModelURL = '/my_model/model.json';
   private readonly teachableMetadataURL = '/my_model/metadata.json';
   private text!: string;
@@ -17,6 +17,10 @@ export class VideoRecognitionService {
   private isPaused = false;
   private shouldStop = false;
   private playbackSpeed = 1;
+
+  private previousClassName: string | null = null; // Зберігаємо попередній клас
+  public detectionResults: RecognitionLog[] = []; // Масив для результатів
+  
 
   constructor() {}
 
@@ -41,7 +45,6 @@ export class VideoRecognitionService {
       } catch (error) {
         console.error('Error loading Teachable Machine model:', error);
       }
-      this.teachableMaxPredictions = this.teachableModel.getTotalClasses();
     }
   }
 
@@ -49,7 +52,8 @@ export class VideoRecognitionService {
   async detectObjects(
     video: HTMLVideoElement,
     canvas: HTMLCanvasElement,
-    playbackRate: number
+    playbackRate: number,
+    cameraId: number
   ): Promise<void> {
     if (!this.model) {
       throw new Error('Coco SSD model not loaded.');
@@ -68,24 +72,42 @@ export class VideoRecognitionService {
       // Синхронізація розмірів
 
       const scaleX = canvas.width / video.videoWidth;
-      const scaleY = (canvas.height / video.videoHeight)
+      const scaleY = canvas.height / video.videoHeight;
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      video.playbackRate = playbackSpeed
+      video.playbackRate = playbackSpeed;
       // Відобразити рамки навколо розпізнаних об'єктів
       const predictions = await this.model!.detect(video);
       predictions
-        .filter((p) => p.class === 'person') 
+        .filter((p) => p.class === 'person')
         .forEach((prediction) => {
           const [x, y, width, height] = prediction.bbox;
 
           // Додаткове розпізнавання за допомогою Teachable Machine
           if (this.teachableModel) {
             this.teachableModel.predict(video).then((prediction: any[]) => {
+              
+
               prediction.forEach((prediction: any, index: number) => {
                 // Виконати розпізнавання
-                if (prediction.probability > 0.5) {
+                if (prediction.probability > 0.6) {
+                  const { className, probability } = prediction;
+
+                  // Зберігаємо результат лише тоді, коли клас змінюється або минув інтервал
+                  if (className !== this.previousClassName) {
+                    this.detectionResults.push({
+                      detectObject: className,
+                      confidenceScore: probability,
+                      timestamp: new Date().toISOString(),
+                      ai_modelId: 0,
+                      cameraId: cameraId,
+                    });
+
+                    // Оновлюємо попередній клас і час збереження
+                    this.previousClassName = className;
+                  }
+
                   switch (prediction.className) {
                     case 'Worker':
                       this.color = 'green';
@@ -107,6 +129,7 @@ export class VideoRecognitionService {
                       this.color = 'white';
                       break;
                   }
+
                   this.text = `${prediction.className} (${(
                     prediction.probability * 100
                   ).toFixed(1)}%)`;
@@ -137,7 +160,6 @@ export class VideoRecognitionService {
     };
 
     detectFrame();
-    
   }
   pause(): void {
     this.isPaused = true;
@@ -145,7 +167,7 @@ export class VideoRecognitionService {
 
   resume(): void {
     this.isPaused = false;
-    this.detectObjects
+    this.detectObjects;
   }
 
   stop(): void {
@@ -160,6 +182,3 @@ export class VideoRecognitionService {
     this.playbackSpeed = speed;
   }
 }
-
-
-

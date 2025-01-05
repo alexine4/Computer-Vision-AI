@@ -9,10 +9,10 @@ export interface User {
 }
 
 export interface RecognitionLog {
-  recognotionResultId: number;
+  recognotionResultId?: number;
   detectObject: string;
   confidenceScore: number;
-  createdAt: Date
+  timestamp: string
   ai_modelId: number;
   cameraId: number
 }

@@ -24,4 +24,8 @@ export class RecognitionLogService {
   }
     return this.httpClient.get<RecognitionLog[]>('/api/recognition/getAll', { params: httpParams });
   }
+
+  public addNew(recognitionLog: RecognitionLog[] ): Observable<{message:string}>{
+    return this.httpClient.post<{message:string}>('/api/recognition/addNew', recognitionLog)
+  }
 }

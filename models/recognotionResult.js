@@ -19,6 +19,10 @@ module.exports.initialization = async () => {
             type: Sequelize.STRING,
             allowNull: false
         },
+        timestamp: {
+            type: Sequelize.DATE,
+            allowNull: false
+        },        
         confidenceScore: {
             type: Sequelize.DOUBLE,
             allowNull: false
@@ -42,10 +46,11 @@ module.exports.initialization = async () => {
 }
 
 // function create new item in Users
-module.exports.create = async ({detectObject,confidenceScore,ai_modelId,cameraId} ) => {
+module.exports.create = async ({detectObject,confidenceScore,timestamp,ai_modelId,cameraId} ) => {
    return await RecognitionResult.create({
         detectObject,
         confidenceScore,
+        timestamp,
         ai_modelId,
         cameraId
     })

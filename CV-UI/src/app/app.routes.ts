@@ -32,7 +32,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent, title: 'Home' },
-      { path: 'camera', component: ViedocameraComponent, title: 'Camera' },
+      { path: 'camera/:id', component: ViedocameraComponent, title: 'Camera' },
       { path: 'test', component: ViedocameraComponent, title: 'Camera' },
     ],
   },
