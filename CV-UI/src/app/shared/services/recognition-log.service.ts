@@ -28,4 +28,18 @@ export class RecognitionLogService {
   public addNew(recognitionLog: RecognitionLog[] ): Observable<{message:string}>{
     return this.httpClient.post<{message:string}>('/api/recognition/addNew', recognitionLog)
   }
+
+  public deleteByPeriod(params?: { [key: string]: string | number | boolean }): Observable<RecognitionLog[]> {
+
+    let httpParams = new HttpParams();
+  
+  if (params) {
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        httpParams = httpParams.set(key, params[key].toString());
+      }
+    }
+  }
+    return this.httpClient.get<RecognitionLog[]>('/api/recognition/getAll', { params: httpParams });
+  }
 }

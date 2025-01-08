@@ -7,11 +7,12 @@ const morgan = require("morgan");
 const connectionDB = require('./connections/connectionDB')
 const Passport = require('./middlware/passport')
 // init contollers
-const initialilazationAll = require('./controllers/initializationDB')
+const initialilazationAll = require('./controllers/initializationDb')
 
 // init routes
 const authRoutes = require("./routes/auth");
 const recognitionRoutes = require("./routes/recognition");
+const cameraRoutes = require("./routes/cameras");
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(bodyParser.json());
 // write path of route and meneger route file
 app.use('/api/auth', authRoutes)
 app.use('/api/recognition', recognitionRoutes)
+app.use('/api/cameras', cameraRoutes)
 
 
 

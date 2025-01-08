@@ -4,37 +4,33 @@ const Sequelize = require('sequelize')
 const connectDB = require('../connections/connectionDB')
 const sequelize = connectDB.sequelize;
 
-class User extends Sequelize.Model { }
+class Camera extends Sequelize.Model { }
 
 
 module.exports.initialization = async () => {
 
-    await User.init({
-        userId: {
+    await Camera.init({
+        cameraId: {
             type: Sequelize.BIGINT,
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique:true
+        },
+        cameraType: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        email: {
+        location: {
             type: Sequelize.STRING,
             allowNull: false
-        },
-        password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        logLevel: {
-            type: Sequelize.INTEGER,
-            defaultValue: 0,
-            allowNull: false
-        },
+        }
     }, {
         sequelize,
-        modelName: 'Users2'
+        modelName: 'Cameras'
     })
     sequelize.sync({
         alter: true
@@ -43,12 +39,41 @@ module.exports.initialization = async () => {
 }
 
 // function create new item in Users
-module.exports.create = async (userName, email, password, logLevel ) => {
-    await User.create({
-        userName: userName,
-        email: email,
-        password: password,
-        logLevel: logLevel ? logLevel : 1
+module.exports.create = async ({name, cameraType, location} ) => {
+    return await Camera.create({
+        name,
+        cameraType,
+        location
     })
-
+}
+module.exports.update = async (cameraId,{ name, cameraType, location} ) => {
+    return await Camera.update({
+        name,
+        cameraType,
+        location
+    },{
+        where:{
+            cameraId 
+        }
+    }
+)
+}
+module.exports.delete = async ({cameraId} ) => {
+   return await Camera.destroy({
+        where:{
+            cameraId 
+        }
+    }
+)
+}
+module.exports.fetchOne = async (cameraId ) => {
+    return await Camera.findOne({
+        where:{
+            cameraId 
+        }
+    }
+)
+}
+module.exports.fetchAll = async () => {
+    return await Camera.findAll()
 }

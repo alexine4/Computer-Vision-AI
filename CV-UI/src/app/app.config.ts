@@ -12,14 +12,17 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { tokenInterceptor } from './shared/classes/token-interceptor';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
 ) => new TranslateHttpLoader(http, './i18n/', '.json');
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,7 +32,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideAnimations(), 
     provideToastr(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(),
+    withInterceptors([tokenInterceptor])
+  ),
     importProvidersFrom([
       TranslateModule.forRoot({
         loader: {
@@ -39,5 +44,7 @@ export const appConfig: ApplicationConfig = {
         },
       }),
     ]),
+   
   ],
 };
+

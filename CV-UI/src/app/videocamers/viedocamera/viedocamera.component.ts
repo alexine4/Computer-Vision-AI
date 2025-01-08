@@ -33,7 +33,7 @@ export class ViedocameraComponent {
   displayedColumns: string[] = ['position', 'object', 'percent', 'time'];
   dataSource!: RecognitionLog[];
 
-  private intervalTime = 1000 * 60; // Інтервал у мілісекундах
+  private intervalTime = 1000 * 10; // Інтервал у мілісекундах
 
   cameraId!: number;
   logs$!: Observable<RecognitionLog[] | null>;
@@ -93,7 +93,7 @@ export class ViedocameraComponent {
     const canvasElement = this.canvas.nativeElement;
 
     // Налаштування відео
-    videoElement.src = '/testing_data/test-video.mp4'; // Вкажіть шлях до відео
+    videoElement.src = '/testing_data/12.mp4'; // Вкажіть шлях до відео
     await videoElement.play();
 
     // Запуск розпізнавання

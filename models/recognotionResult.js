@@ -62,8 +62,9 @@ module.exports.findAll = async({cameraId, offset, limit})=>{
     return await RecognitionResult.findAll({
         where:{
            cameraId
-        },
+        }, 
+        order: [['createdAt', 'DESC']],
         offset: Number(offset),
-        limit: Number(limit),
+        limit: Number(limit)
     })
 }

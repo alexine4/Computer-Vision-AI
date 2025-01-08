@@ -5,6 +5,7 @@ import { AuthGuard } from './shared/classes/auth.guard';
 import { SiteComponent } from './shared/layouts/site/site.component';
 import { HomeComponent } from './home/home.component';
 import { ViedocameraComponent } from './videocamers/viedocamera/viedocamera.component';
+import { VideocamersComponent } from './videocamers/videocamers.component';
 
 export const routes: Routes = [
   {
@@ -33,7 +34,7 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent, title: 'Home' },
       { path: 'camera/:id', component: ViedocameraComponent, title: 'Camera' },
-      { path: 'test', component: ViedocameraComponent, title: 'Camera' },
+      { path: 'camers', component: VideocamersComponent, title: 'Camers' },
     ],
   },
 ];

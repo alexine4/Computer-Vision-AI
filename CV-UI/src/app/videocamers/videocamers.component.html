@@ -1,1 +1,47 @@
-<p>videocamers works!</p>
+<div class="wrapper"  *ngIf="!loading; else loader">
+    <section class="buttons-container">
+    
+        <button (click)="openPage('camers')" class="button-container" mat-fab extended>
+          <mat-icon>videocam</mat-icon>
+          {{ "Videocamers" | translate }}
+        </button>
+      
+        <button (click)="openPage('test')" class="button-container" mat-fab extended>
+          <mat-icon>newspaper</mat-icon>
+          {{ "Recognition log" | translate }}
+        </button>
+        <button  class="button-container" mat-fab extended>
+          <mat-icon>fact_check</mat-icon>
+          {{ "List of threats" | translate }}
+        </button>
+        <button class="button-container" mat-fab extended>
+          <mat-icon>admin_panel_settings</mat-icon>
+          {{ "Administration" | translate }}
+        </button>
+    </section>
+    <form  [formGroup]="camersForm" class="block__form form">
+        <mat-form-field class="form__field" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput placeholder="Street 32">
+        </mat-form-field>
+        <mat-form-field class="form__field" appearance="outline">
+          <mat-label>Type</mat-label>
+          <select formControlName="cameraType" matNativeControl required>
+            <option value="ForTheStreet">For the street</option>
+            <option value="ForPremises">For premises</option>
+          </select>
+        </mat-form-field>
+      
+        <mat-form-field class="form__field" appearance="outline">
+          <mat-label>Location</mat-label>
+          <textarea formControlName="location" matInput placeholder="Ex. street left cambus..."></textarea>
+        </mat-form-field>
+        <button class="form__btn" (click)="addNewCamera()" mat-stroked-button>Send</button>
+      </form>
+</div>
+
+<ng-template #loader>
+<div class="loader">
+  <mat-spinner></mat-spinner>
+</div>
+</ng-template>

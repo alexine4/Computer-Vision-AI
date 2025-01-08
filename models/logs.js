@@ -4,37 +4,36 @@ const Sequelize = require('sequelize')
 const connectDB = require('../connections/connectionDB')
 const sequelize = connectDB.sequelize;
 
-class User extends Sequelize.Model { }
+class Log extends Sequelize.Model { }
 
 
 module.exports.initialization = async () => {
 
-    await User.init({
-        userId: {
+    await Log.init({
+        logId: {
             type: Sequelize.BIGINT,
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
+        event: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        email: {
+        description: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        password: {
-            type: Sequelize.STRING,
+        userId: {
+            type: Sequelize.BIGINT,
             allowNull: false
         },
-        logLevel: {
-            type: Sequelize.INTEGER,
-            defaultValue: 0,
-            allowNull: false
+        recognitionResultId: {
+            type: Sequelize.BIGINT,
+            allowNull: true
         },
     }, {
         sequelize,
-        modelName: 'Users3'
+        modelName: 'Logs'
     })
     sequelize.sync({
         alter: true
@@ -43,12 +42,21 @@ module.exports.initialization = async () => {
 }
 
 // function create new item in Users
-module.exports.create = async (userName, email, password, logLevel ) => {
-    await User.create({
-        userName: userName,
-        email: email,
-        password: password,
-        logLevel: logLevel ? logLevel : 1
+module.exports.create = async ({event, description, recognitionResultId}, userId ) => {
+    return await Log.create({
+        event,
+        description,
+        recognitionResultId,
+        userId
+    })
+
+}
+
+module.exports.findAllByParameters = async ({ offset, limit} ) => {
+    return await Log.findAll({
+        order: [['createdAt', 'DESC']],
+        offset: Number(offset),
+        limit: Number(limit)
     })
 
 }

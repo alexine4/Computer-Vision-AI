@@ -9,9 +9,10 @@ module.exports.login = async (req, res) => {
   if (login) {
     // ckeck login is email or not
     const checkEmail = user.findOne("email", login);
-    checkEmail.then((Email) => {
+    checkEmail.then(async(Email) => {
       if (Email !== null) {
         // email already exist
+        await user.update()
         const passwordResult = bCrypt.compareSync(
           req.body.password,
           Email.dataValues.password
@@ -21,7 +22,7 @@ module.exports.login = async (req, res) => {
           const token = jwt.sign(
             {
               userId: Email.dataValues.userId,
-              logLevel: Email.dataValues.logLevel,
+              permissionLevel: Email.dataValues.permissionLevel,
             },
             connectionDB.jwt,
             {
@@ -50,7 +51,7 @@ module.exports.login = async (req, res) => {
               const token = jwt.sign(
                 {
                   userId: Name.dataValues.userId,
-                  logLevel: Name.dataValues.logLevel,
+                  permissionLevel: Name.dataValues.permissionLevel,
                 },
                 connectionDB.jwt,
                 {
@@ -95,7 +96,11 @@ module.exports.register = async function (req, res) {
                   req.body.userName,
                   req.body.email,
                   bCrypt.hashSync(password, salt),
-                  req.body.logLevel
+                  req.body.firstName,
+                  req.body.secondName,
+                  req.body.role,
+                  req.body.permissionLevel
+
                 )
                 .then(() => {
                   res.status(201).json({
